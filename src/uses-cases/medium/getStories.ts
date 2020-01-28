@@ -7,7 +7,7 @@ interface stories {
     thumbnail: string;
 }
 
-const makeGetStories = (requester:any, {RSS2JSON_URL}:any) => {
+const makeGetStories = (requester:any, RSS2JSON_URL:string) => {
     return async () => {
         const res = await requester.get(RSS2JSON_URL)
         const stories: stories[] = []
