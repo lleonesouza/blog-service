@@ -1,4 +1,4 @@
-import ipRegex from "ip-regex";
+const ipRegex = require("ip-regex") ;
 import sanitizeHtml from "sanitize-html";
 
 import validateUser from './user/user'
