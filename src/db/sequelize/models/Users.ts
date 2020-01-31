@@ -18,9 +18,6 @@ class User extends Model {
       },
       email: DataTypes.STRING,
       organization: DataTypes.STRING,
-      bucket: DataTypes.STRING,
-      store: DataTypes.STRING,
-      auth: DataTypes.STRING,
       pagar_me: DataTypes.STRING,
       users: DataTypes.STRING,
       watson: DataTypes.STRING,
@@ -28,6 +25,9 @@ class User extends Model {
       photo: DataTypes.STRING,
       nationality: DataTypes.STRING,
       birthday: DataTypes.STRING,
+      projects_id: DataTypes.STRING,
+      repositories_id: DataTypes.STRING,
+      medium_id: DataTypes.STRING,
     }, { sequelize })
   }
 

@@ -28,54 +28,54 @@ const GITHUB_REPOSITORIES_URL = `https://api.github.com/users/${USER}`;
 
 
 // User
-const createUser = makeCreateUser({makeUser, makeSource, UserDB});
-const updateUser = makeUpdateUser({makeUser, makeSource, UserDB});
-const deleteUser = makeDeleteUser({makeUser, makeSource, UserDB});
-const getUser = makeGetUser({makeUser, makeSource, UserDB});
-const getUsers = makeGetUsers({makeUser, makeSource, UserDB});
+const create_user = makeCreateUser({makeUser, makeSource, UserDB});
+const update_user = makeUpdateUser({makeUser, makeSource, UserDB});
+const delete_user = makeDeleteUser({makeUser, makeSource, UserDB});
+const get_user = makeGetUser({makeUser, makeSource, UserDB});
+const get_users = makeGetUsers({makeUser, makeSource, UserDB});
 
 // Projects
-const createProject = makeCreateProject({makeProject, makeSource, ProjectDB});
-const updateProject = makeUpdateProject({makeProject, makeSource, ProjectDB});
-const deleteProject = makeDeleteProject({makeProject, makeSource, ProjectDB});
-const getProject = makeGetProject({makeProject, ProjectDB});
-const getProjects = makeGetProjects({makeProject, ProjectDB});
+const create_project = makeCreateProject({makeProject, makeSource, ProjectDB});
+const update_project = makeUpdateProject({makeProject, makeSource, ProjectDB});
+const delete_project = makeDeleteProject({makeProject, makeSource, ProjectDB});
+const get_project = makeGetProject({makeProject, ProjectDB});
+const get_projects = makeGetProjects({makeProject, ProjectDB});
 
 // Resources
-const getStories = makeGetStories(axios, RSS2JSON_URL);
-const getGithub = makeGetGithub(axios, GITHUB_URL);
-const getRepositories = makeGetRepositories(axios, GITHUB_REPOSITORIES_URL);
+const get_medium_stories = makeGetStories(axios, RSS2JSON_URL);
+const get_github_user = makeGetGithub(axios, GITHUB_URL);
+const get_github_repos = makeGetRepositories(axios, GITHUB_REPOSITORIES_URL);
 
 const index = Object.freeze({
-  getStories,
-  getGithub,
-  getRepositories,
-  createUser,
-  updateUser,
-  deleteUser,
-  getUsers,
-  getUser,
-  createProject,
-  updateProject,
-  deleteProject,
-  getProject,
-  getProjects
+  get_medium_stories,
+  get_github_user,
+  get_github_repos,
+  create_user,
+  update_user,
+  delete_user,
+  get_user,
+  get_users,
+  create_project,
+  update_project,
+  delete_project,
+  get_project,
+  get_projects
 });
 
 export default index;
 
 export {
-  getStories,
-  getGithub,
-  getRepositories,
-  createUser,
-  updateUser,
-  deleteUser,
-  getUsers,
-  getUser,
-  createProject,
-  updateProject,
-  deleteProject,
-  getProject,
-  getProjects
+  get_medium_stories,
+  get_github_user,
+  get_github_repos,
+  create_user,
+  update_user,
+  delete_user,
+  get_user,
+  get_users,
+  create_project,
+  update_project,
+  delete_project,
+  get_project,
+  get_projects
 };

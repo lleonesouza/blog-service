@@ -1,4 +1,4 @@
-export default function buildMakeSource ({ isValidIp }) {
+export default function buildMakeSource ({ isValidIp }:any) {
   const makeSource = ({ ip, browser, referrer }:any) => {
     if (!ip) {
       throw new Error('Comment source must contain an IP.')

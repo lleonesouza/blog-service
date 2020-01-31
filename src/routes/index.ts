@@ -1,11 +1,14 @@
+import { getUser, login } from "../controllers/index";
+import passport from "passport";
 
-import {getMediumStores} from '../controllers/index'
+const oauth_options = { session: false };
+const github2Oauth = passport.authenticate("githubtoken", oauth_options);
 
+const makeRoutes = (router: any) => {
+  router.post("/oauth/github", github2Oauth, login);
+  router.get("/user/name", getUser);
 
-const makeRoutes = (router:any) => {
-    router.get("/stores", getMediumStores);
+  return router;
+};
 
-    return router
-}
-
-export default makeRoutes
+export default makeRoutes;
