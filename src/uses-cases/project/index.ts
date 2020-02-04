@@ -39,7 +39,25 @@ const makeUpdateProject = ({userDb}:any) => {
     }
 }
 
+const makeCacheProjects = ({cacheProject, getProject}:any) => {
+    return (data:any) => {
+        const projects = getProject(data)
+        const cached_projects = cacheProject(projects)
+        return cached_projects
+    }
+}
+
+const makeGetCacheProjects = ({cacheProject, getProject}:any) => {
+    return (data:any) => {
+        const projects = getProject(data)
+        const cached_projects = cacheProject(projects)
+        return cached_projects
+    }
+}
+
 const project = Object.freeze({
+    makeGetCacheProjects,
+    makeCacheProjects,
     makeGetProject,
     makeCreateProject,
     makeDeleteProject,
@@ -48,6 +66,8 @@ const project = Object.freeze({
 
 export default project
 export {
+    makeGetCacheProjects,
+    makeCacheProjects,
     makeGetProjects,
     makeGetProject,
     makeCreateProject,

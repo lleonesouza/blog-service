@@ -55,6 +55,17 @@ const getProjects = makeGetProjects({ get_projects });
 const login = makeLogin({});
 const logout = makeLogout();
 
+
+// Redis Middleware
+const cacheUser = ''
+const cacheProjects = ''
+const cacheRepos = ''
+const cacheGithubUser = ''
+const cacheMedium = ''
+const getRepos = ''
+const getGithubUser = ''
+const getMedium = ''
+
 const index = Object.freeze({
     // Oauth
   login,
@@ -67,13 +78,25 @@ const index = Object.freeze({
   delUser,
   getUser,
   getUsers,
+  cacheUser,
 
   // Projects
   createProject,
   updateProject,
   delProject,
   getProject,
-  getProjects
+  getProjects,
+  cacheProjects,
+
+  // Github
+  getRepos,
+  cacheRepos,
+  getGithubUser,
+  cacheGithubUser,
+
+  // Medium
+  getMedium,
+  cacheMedium
 });
 
 export default index;

@@ -32,12 +32,7 @@ class User extends Model {
   }
 
   static associate(models:any) {
-    this.hasMany(models.Orders, { foreignKey: 'user_id', as: 'addresses' });
-    this.hasMany(models.Address, { foreignKey: 'user_id', as: 'techs' });
-    this.hasMany(models.Item, { foreignKey: 'user_id', as: 'techs' });
-    this.hasMany(models.Abandonment, { foreignKey: 'user_id', as: 'techs' });
-    this.hasMany(models.Document, { foreignKey: 'user_id', as: 'techs' });
-    this.hasMany(models.Ask, { foreignKey: 'user_id', as: 'techs' });
+    this.hasMany(models.Project, { foreignKey: 'user_id', as: 'addresses' });
   }
 
 }

@@ -35,9 +35,9 @@ interface repositorie {
   svn_url: string;
 }
 
-const makeGetRepositories = (requester: any, GITHUB_REPOSITORIES_URL: any) => {
+const makeGetRepositories = (GITHUB_REPOSITORIES_URL: any) => {
   return async () => {
-    const res = await requester.get(GITHUB_REPOSITORIES_URL);
+    const res = await (await fetch(GITHUB_REPOSITORIES_URL)).json()
     const repos: repositorie[] = [];
     res.data.items.map((repo: any) => {
         repos.push({
