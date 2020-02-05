@@ -3,8 +3,8 @@ const passport = require("passport");
 const JwtStrategy = require("passport-jwt").Strategy;
 const GitHubStrategy = require('passport-github2')
 
-const makePassportInit = ({ strategy, oauth, cookieExtractor }:any) => {
- return ({secret, config}:any) => {
+const makePassportInit = ({ strategy, oauthUser, cookieExtractor }:any) => {
+ return ({passport_secret, github_config}:any) => {
   passport.serializeUser(function(user:any, done:any) {
     done(null, user);
   });
@@ -13,11 +13,12 @@ const makePassportInit = ({ strategy, oauth, cookieExtractor }:any) => {
     done(null, user);
   });
 
+
   passport.use(
     new JwtStrategy(
       {
         jwtFromRequest: cookieExtractor,
-        secretOrKey: secret,
+        secretOrKey: passport_secret,
         passReqToCallback: true
       },
       strategy
@@ -28,11 +29,11 @@ const makePassportInit = ({ strategy, oauth, cookieExtractor }:any) => {
     "githubtoken",
     new GitHubStrategy(
       {
-        clientID: config.oauth.github.clientID,
-        clientSecret: config.oauth.github.clientSecret,
+        clientID: github_config.clientID,
+        clientSecret: github_config.clientSecret,
         passReqToCallback: true
       },
-      oauth
+      oauthUser
     )
   );
  }

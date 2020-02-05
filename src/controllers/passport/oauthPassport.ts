@@ -7,7 +7,7 @@ const makeOauthPassport = ({get_user, create_user}:any) => {
       done: any
     ) => {
       try {
-        const exists = await get_user({ _id: profile.emails[0].value });
+        const exists = await get_user({ login: profile._json.login });
         if (exists) {
           done(null, exists);
         } else {

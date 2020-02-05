@@ -10,17 +10,18 @@ const makeServer = () => {
   const github_config = config.oauth.github
   const sequelize_config = config.sequelize.test
 
+
   const app = express();
   app.disable("x-powered-by");
   app.use(express.json());
   sequelize(sequelize_config);
 
-  // app.use(passport.initialize());
-  // initPassport({ passport_secret, github_config });
+  app.use(passport.initialize());
+  initPassport({ passport_secret, github_config });
 
-  // const router = express.Router();
-  // const routes = makeRoutes(router);
-  // app.use("/medium", routes);
+  const router = express.Router();
+  const routes = makeRoutes(router);
+  app.use("/", routes);
 
   return app;
 };

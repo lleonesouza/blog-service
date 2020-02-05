@@ -1,120 +1,50 @@
-import { makeSource, makeUser, makeProject } from "../entities/index";
 import { postgree, redis } from "../db/index";
 const { UserDB, ProjectDB } = postgree;
 
-// User Postgree
-import { makeGetUser } from "./users/index";
-import { makeCreateUser } from "./users/index";
-import { makeDeleteUser } from "./users/index";
-import { makeUpdateUser } from "./users/index";
-import { makeGetUsers } from "./users/index";
-
-// Project Portgree
-import { makeGetProject } from "./project/index";
-import { makeGetProjects } from "./project/index";
-import { makeCreateProject } from "./project/index";
-import { makeDeleteProject } from "./project/index";
-import { makeUpdateProject } from "./project/index";
-
-// Resources
-import makeGetStories from "./medium/getStories";
-import makeGetGithub from "./github/getGithub";
-import makeGetRepositories from "./github/getRepositories";
-
-// Cache
-import makeCacheMedium from "./redis_cache/cacheMedium";
-import makeCacheProject from "./redis_cache/cacheProject";
-import makeCacheRepo from "./redis_cache/cacheRepo";
-import makeCacheUser from "./redis_cache/cacheUser";
-import makeCacheUsers from "./redis_cache/cacheUsers";
-
-import makeGetCachedMedium from "./redis_cache/getCachedMedium";
-import makeGetCachedProjects from "./redis_cache/getCachedProjects";
-import makeGetCachedRepo from "./redis_cache/getCachedRepo";
-import makeGetCachedUser from "./redis_cache/getCachedUser";
-import makeGetCachedUsers from "./redis_cache/getCachedUsers";
-
-const axios = "";
-
-const mediumUrl = (medium_user: any) => {
-  const MEDIUM_URL = `https://medium.com/feed/@${medium_user}`;
-  const RSS2JSON_URL = `https://api.rss2json.com/v1/api.json?rss_url=${MEDIUM_URL}`;
-  return RSS2JSON_URL;
-};
-
-const githubUrl = (github_user: any) => {
-  const GITHUB_URL = `https://api.github.com/users/${github_user}`;
-  const GITHUB_REPOSITORIES_URL = `https://api.github.com/users/${github_user}/repos`;
-  return [GITHUB_URL, GITHUB_REPOSITORIES_URL];
-};
-
-// Redis Cache
-const get_cached_medium = makeGetCachedMedium;
-const cache_medium = makeCacheMedium;
-
-const get_cached_projects = makeGetCachedProjects;
-const cache_projects = makeCacheProject;
-
-const get_cached_repo = makeGetCachedRepo;
-const chace_repo = makeCacheRepo;
-
-const get_cached_user = makeGetCachedUser;
-const chace_user = makeCacheUser;
-
-const get_cached_users = makeGetCachedUsers;
-const chace_users = makeCacheUsers;
-
-// User
-const create_user = makeCreateUser({ makeUser, makeSource, UserDB });
-const update_user = makeUpdateUser({ makeUser, makeSource, UserDB });
-const delete_user = makeDeleteUser({ makeUser, makeSource, UserDB });
-const get_user = makeGetUser({ makeUser, makeSource, UserDB });
-const get_users = makeGetUsers({ makeUser, makeSource, UserDB });
+// Users
+import makeCacheUser from "./users/cacheUser";
+import makeCreateUser from "./users/createUser";
+import makeDeleteUser from "./users/deleteUser";
+import makeGetCachedUser from "./users/getCachedUser";
+import makeGetUser from "./users/getUser";
+import makeGetUsers from "./users/getUsers";
+import makeUpdateAbout from "./users/updateAbout";
+import makeUpdateBlogUrl from "./users/updateBlogUrl";
 
 // Projects
-const create_project = makeCreateProject({
-  makeProject,
-  makeSource,
-  ProjectDB
-});
-const update_project = makeUpdateProject({
-  makeProject,
-  makeSource,
-  ProjectDB
-});
-const delete_project = makeDeleteProject({
-  makeProject,
-  makeSource,
-  ProjectDB
-});
-const get_project = makeGetProject({ makeProject, ProjectDB });
-const get_projects = makeGetProjects({ makeProject, ProjectDB });
+import  makeCreateProject  from "./project/createProject";
+import  makeDeleteProject  from "./project/deleteProject";
+import  makeGetProject  from "./project/getProject";
+import  makeGetProjects  from "./project/getProjects";
+import  makeUpdateProject  from "./project/updateProject";
 
-// Resources
-const get_medium_stories = makeGetStories(mediumUrl);
-const get_github_user = makeGetGithub(githubUrl);
-const get_github_repos = makeGetRepositories(githubUrl);
+// User
+const cacheUser = makeCacheUser({ UserDB });
+const create_user = makeCreateUser({ UserDB });
+const delete_user = makeDeleteUser({ UserDB });
+const get_cachedUser = makeGetCachedUser({ UserDB });
+const get_user = makeGetUser({ UserDB });
+const get_users = makeGetUsers({ UserDB });
+const update_about = makeUpdateAbout({ UserDB });
+const update_blogUrl = makeUpdateBlogUrl({ UserDB });
+
+// Projects
+const create_project = makeCreateProject({ ProjectDB });
+const update_project = makeUpdateProject({ ProjectDB });
+const delete_project = makeDeleteProject({ ProjectDB });
+const get_project = makeGetProject({ ProjectDB });
+const get_projects = makeGetProjects({ ProjectDB });
 
 const index = Object.freeze({
-  get_cached_medium,
-  cache_medium,
-  get_cached_projects,
-  cache_projects,
-  get_cached_repo,
-  chace_repo,
-  get_cached_user,
-  chace_user,
-  get_cached_users,
-  chace_users,
-
-  get_medium_stories,
-  get_github_user,
-  get_github_repos,
+  cacheUser,
   create_user,
-  update_user,
   delete_user,
+  get_cachedUser,
   get_user,
   get_users,
+  update_about,
+  update_blogUrl,
+
   create_project,
   update_project,
   delete_project,
@@ -125,24 +55,14 @@ const index = Object.freeze({
 export default index;
 
 export {
-  get_cached_medium,
-  cache_medium,
-  get_cached_projects,
-  cache_projects,
-  get_cached_repo,
-  chace_repo,
-  get_cached_user,
-  chace_user,
-  get_cached_users,
-  chace_users,
-  get_medium_stories,
-  get_github_user,
-  get_github_repos,
+  cacheUser,
   create_user,
-  update_user,
   delete_user,
+  get_cachedUser,
   get_user,
   get_users,
+  update_about,
+  update_blogUrl,
   create_project,
   update_project,
   delete_project,

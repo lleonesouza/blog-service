@@ -33,7 +33,7 @@ module.exports = {
         primaryKey: true,
         allowNull: false
       },
-      github_avatar_url: {
+      avatar_url: {
         type: Sequelize.INTERGER,
         primaryKey: true,
         allowNull: false

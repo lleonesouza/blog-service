@@ -1,26 +1,14 @@
-import {
-  get_medium_stories,
-  get_github_user,
-  get_github_repos,
-  create_user,
-  update_user,
-  delete_user,
-  get_user,
-  get_users,
-  create_project,
-  update_project,
-  delete_project,
-  get_project,
-  get_projects
-} from "../uses-cases/index";
-
+// Passport
 import makeOauthStrategy from "./passport/strategy";
+import makeOauthPassport from "./passport/oauthPassport";
 
+// App
 import makeLogin from "./oauth/login";
 import makeLogout from "./oauth/logout";
 
-import makeOauthPassport from "./passport/oauthPassport";
 import makeUpdateUser from "./user/update-user";
+import makeUpdateAbout from './user/update-about'
+import makeUpdateBlogUrl from './user/update-blogUrl'
 import makeDelUser from "./user/delete-user";
 import makeGetUser from "./user/get-user";
 import makeGetUsers from "./user/get-users";
@@ -32,91 +20,67 @@ import makeGetProject from "./project/get-project";
 import makeGetProjects from "./project/get-projects";
 
 // Passport
-const oauthUser = makeOauthPassport({ create_user, get_user });
+const oauthUser = makeOauthPassport({});
 const strategy = makeOauthStrategy();
 
-// Express Route
-const updateUser = makeUpdateUser({
-  update_user,
-  get_medium_stories,
-  get_github_user,
-  get_github_repos
-});
-const delUser = makeDelUser({ delete_user });
-const getUser = makeGetUser({ get_user });
-const getUsers = makeGetUsers({ get_users });
+// App
+const cacheUser = makeUpdateUser({});
+const delUser = makeDelUser({});
+const getUser = makeGetUser({});
+const getUsers = makeGetUsers({});
+const updateAbout = makeUpdateAbout({});
+const updateBlogUrl = makeUpdateBlogUrl({});
 
-const createProject = makeCreateProject({ create_project });
-const updateProject = makeUpdateProject({ update_project });
-const delProject = makeDelProject({ delete_project });
-const getProject = makeGetProject({ get_project });
-const getProjects = makeGetProjects({ get_projects });
+const createProject = makeCreateProject({});
+const updateProject = makeUpdateProject({});
+const delProject = makeDelProject({});
+const getProject = makeGetProject({});
+const getProjects = makeGetProjects({});
 
 const login = makeLogin({});
 const logout = makeLogout();
 
-
-// Redis Middleware
-const cacheUser = ''
-const cacheProjects = ''
-const cacheRepos = ''
-const cacheGithubUser = ''
-const cacheMedium = ''
-const getRepos = ''
-const getGithubUser = ''
-const getMedium = ''
-
 const index = Object.freeze({
-    // Oauth
+  // Oauth
   login,
   logout,
   strategy,
   oauthUser,
 
   // User
-  updateUser,
+  cacheUser,
   delUser,
   getUser,
   getUsers,
-  cacheUser,
+  updateAbout,
+  updateBlogUrl,
 
   // Projects
   createProject,
   updateProject,
   delProject,
   getProject,
-  getProjects,
-  cacheProjects,
-
-  // Github
-  getRepos,
-  cacheRepos,
-  getGithubUser,
-  cacheGithubUser,
-
-  // Medium
-  getMedium,
-  cacheMedium
+  getProjects
 });
 
 export default index;
 export {
-    // Oauth
-    login,
-    logout,
-    strategy,
-    oauthUser,
-  
-    // User
-    updateUser,
-    delUser,
-    getUser,
-    getUsers,
-  
-    // Projects
-    createProject,
-    updateProject,
-    delProject,
-    getProject,
-    getProjects
-  };
+  // Oauth
+  login,
+  logout,
+  strategy,
+  oauthUser,
+  // User
+  cacheUser,
+  delUser,
+  getUser,
+  getUsers,
+  updateAbout,
+  updateBlogUrl,
+  // Projects
+  createProject,
+  updateProject,
+  delProject,
+  getProject,
+  getProjects
+};
