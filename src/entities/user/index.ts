@@ -15,14 +15,14 @@ const buildUser = ({ Id, fetchUser, fetchRepos, fetchStories }:any) => {
 
     const deletedText = ".xX This user has been desactived Xx.";
 
-      const blogUrl = mediumUrl(username)
+      // const blogUrl = mediumUrl(username)
     
     const user = Object.freeze({
       getId: () => id,
       getGitId: () => git_id,
       getUsername: () => username,
       getEmail: () => email,
-      getMediumUrl: () => blogUrl,
+      getMediumUrl: () => null,
       getUrl: () => url,
       getReposUrl: () => repos_url,
       getHtmlUrl: () => html_url,
@@ -36,7 +36,7 @@ const buildUser = ({ Id, fetchUser, fetchRepos, fetchStories }:any) => {
       },
       getUrls: () => '',
       getRepos: () => fetchRepos(repos_url),
-      getMediumStories: () => fetchStories(blogUrl),
+      getMediumStories: () => 'fetchStories(blogUrl)',
       getUserInfo: () => '',
       getGitUser: () => fetchUser(url),
       getAvatarUrl: () => '',

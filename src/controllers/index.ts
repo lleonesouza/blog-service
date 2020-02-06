@@ -1,5 +1,6 @@
 import {
-  get_username,
+  signToken,
+  get_user,
   create_user,
   cache_user,
   create_project,
@@ -34,27 +35,29 @@ import makeDelProject from "./project/delete-project";
 import makeGetProject from "./project/get-project";
 import makeGetProjects from "./project/get-projects";
 
+
+
+
 // Passport
-const oauthUser = makeOauthPassport({get_username, create_user});
+const oauthUser = makeOauthPassport({ get_user, create_user });
 const strategy = makeOauthStrategy();
 
 // App
-const cacheUser = makeDelUser({get_cachedUser, cache_user});
-const delUser = makeDelUser({delete_user});
-const getUser = makeGetUser({});
-const getUsers = makeGetUsers({});
-const updateAbout = makeUpdateAbout({});
-const updateBlogUrl = makeUpdateBlogUrl({});
+const cacheUser = makeDelUser({ get_cachedUser, cache_user });
+const delUser = makeDelUser({ delete_user });
+const getUser = makeGetUser({ get_user });
+const getUsers = makeGetUsers({ get_users });
+const updateAbout = makeUpdateAbout({ update_about });
+const updateBlogUrl = makeUpdateBlogUrl({ update_blogUrl });
 
-const createProject = makeCreateProject({});
-const updateProject = makeUpdateProject({});
-const delProject = makeDelProject({});
-const getProject = makeGetProject({});
-const getProjects = makeGetProjects({});
+const createProject = makeCreateProject({ create_project });
+const updateProject = makeUpdateProject({ update_project });
+const delProject = makeDelProject({ delete_project });
+const getProject = makeGetProject({ get_project });
+const getProjects = makeGetProjects({ get_projects });
 
-const login = makeLogin({});
+const login = makeLogin({signToken});
 const logout = makeLogout();
-
 
 export default Object.freeze({
   // Oauth

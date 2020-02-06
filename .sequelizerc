@@ -2,7 +2,7 @@ const path = require('path')
 
 module.exports = {
     // yarn sequelize db:create
-    config: path.resolve(__dirname, 'src', 'config.js' ),
+    config: path.resolve(__dirname, 'src', 'config.migrations.js' ),
     // yarn sequelize migration:create --name=my_migrations
     "migrations-path": path.resolve(__dirname, 'src', 'db', 'sequelize', 'migrations')
     // yarn sequelize db:migrate:undo 

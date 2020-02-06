@@ -1,13 +1,15 @@
-import Users from "./Users";
-import Projects from "./Projects";
+import User from "./Users";
+import Project from "./Projects";
+
 
 const makeModelsInit = (sequelize: any) => {
-  Users.init(sequelize);
-  Projects.init(sequelize);
+  User.init(sequelize)
+  Project.init(sequelize);
+  
+  User.associate(sequelize.models)
+  Project.associate(sequelize.models)
 
-  Users.associate(sequelize.models)
-  Projects.associate(sequelize.models)
+  return { User, Project }
 };
 
 export default makeModelsInit;
-export { Users, Projects };

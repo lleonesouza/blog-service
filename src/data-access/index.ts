@@ -1,9 +1,10 @@
 import makeUserDb from "./users";
 import makeProjectDb from "./projects";
-import { Users, Projects } from "../db/sequelize/index";
 import initRedis from "../db/redis/index";
-
-const { medium, repos, user } = initRedis();
+import sequelize from "../db/sequelize/index";
+import config from "../config";
+// const { medium, repos, user } = initRedis();
+const { User, Project } = sequelize(config.sequelize.test);
 
 const {
   createUser,
@@ -14,7 +15,7 @@ const {
   getCachedUser,
   insertCachedUser,
   deleteUser
-} = makeUserDb({ Users, user });
+} = makeUserDb({ User });
 
 const {
   createProject,
@@ -22,7 +23,7 @@ const {
   findProjectById,
   getProjects,
   updateProject
-} = makeProjectDb({ Projects });
+} = makeProjectDb({ Project });
 
 export default Object.freeze({
   createUser,

@@ -1,37 +1,37 @@
-const makeUserDb = ({ seqDb, redisDb }: any) => {
+const makeUserDb = ({ User, redisDb }: any) => {
   const insertAbout = (id: any, about: string) => {
-    seqDb.update({ about: about }, { where: { id: id } });
+    User.update({ about: about }, { where: { id: id } });
   };
 
-  const findUsername = (username: any) => {
-    return seqDb.find({ where: username }, { raw: true }).then((user: any) => {
+  const findUsername = async (username: any) => {
+    try {
+      const user = await User.findOne({ where: { username } });
       return user;
-    });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const insertBlogUrlById = async (id: any, blogUrl: string) => {
-    const user = await seqDb.update(
-      { blogUrl: blogUrl },
-      { where: { id: id } }
-    );
+    const user = await User.update({ blogUrl: blogUrl }, { where: { id: id } });
   };
 
   const getUsers = () => {
-    return seqDb.findAll({ raw: true }).then((users: any) => {
-      return users;
+    return User.findAll({ raw: true }).then((User: any) => {
+      return User;
     });
   };
 
   const deleteUser = (user_id: any) => {
-    seqDb.destroy(user_id).then((user: any) => {
+    User.destroy(user_id).then((user: any) => {
       console.log(user);
     });
   };
 
-  const createUser = (user: any) => {
-    seqDb.create(user).then((user: any) => {
-      console.log(user);
-    });
+  const createUser = async (newUser: any) => {
+    const user = await User.create(newUser)
+    console.log(user)
+    return user
   };
   const getCachedUser = () => {};
 

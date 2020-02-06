@@ -10,7 +10,36 @@ module.exports = {
         allowNull: false
       },
       title: {
-        type: DataTypes.STRING,
+        type: Sequelize.INTERGER,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: false
+      },
+      description: {
+        type: Sequelize.INTERGER,
+        allowNull: true
+      },
+      create_at: {
+        type: Sequelize.DATE,
+        allowNull: false
+      },
+      updated_at: {
+        type: Sequelize.DATE,
+        allowNull: false
+      },
+    });
+  },
+
+  down: (queryInterface, Sequelize) => {
+    return queryInterface.dropTable("users", {
+      id: {
+        type: Sequelize.INTERGER,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: false
+      },
+      title: {
+        type: Sequelize.STRING,
         allowNull: false,
         references: {model: 'users', key: 'id'},
         onUpdate: 'CASCADE',
@@ -25,19 +54,9 @@ module.exports = {
           }
         }
       },
-      git_hub_url: {
-        type: Sequelize.INTERGER,
-        primaryKey: true,
-        allowNull: true
-      },
-      medium_url: {
-        type: Sequelize.INTERGER,
-        primaryKey: true,
-        allowNull: true
-      },
       description: {
         type: Sequelize.INTERGER,
-        allowNull: false
+        allowNull: true
       },
       create_at: {
         type: Sequelize.DATE,
@@ -48,9 +67,5 @@ module.exports = {
         allowNull: false
       },
     });
-  },
-
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("users", {});
   }
 };

@@ -1,21 +1,26 @@
 import Sequelize from "sequelize";
-import makeModelsInit, { Users, Projects } from "./models/index";
+import makeModelsInit from "./models/index";
+
 
 const sequelize = (sequelize_config: any) => {
-  var sequelize_connection = new Sequelize(
+  var connection = new Sequelize(
     sequelize_config.database,
     sequelize_config.username,
     sequelize_config.password,
     sequelize_config
   );
 
-  sequelize_connection
+
+  connection
     .authenticate()
     .then(() => console.log("Data base connected"))
     .catch((err: any) => console.log(err));
 
-  makeModelsInit(sequelize_connection);
+
+  const {User,Project} = makeModelsInit(connection);
+    
+
+  return {User,Project}
 };
 
 export default sequelize;
-export { Users, Projects };

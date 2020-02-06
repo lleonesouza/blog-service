@@ -1,4 +1,4 @@
-const makeGetUser = (findUsername:any) => {
+const makeGetUser = ({findUsername}:any) => {
     return async (username:any) => {
         const redis_user = await findUsername(username)
         return redis_user

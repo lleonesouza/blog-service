@@ -9,79 +9,52 @@ module.exports = {
         autoIncrement: true,
         allowNull: false
       },
-      name: {
+      git_id: {
+        type: Sequelize.INTERGER,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: false
+      },
+      username: {
         type: Sequelize.INTERGER,
         allowNull: false
       },
       email: {
         type: Sequelize.INTERGER,
         primaryKey: true,
-        allowNull: false
+        allowNull: true
       },
       url: {
         type: Sequelize.INTERGER,
         primaryKey: true,
-        allowNull: false
+        allowNull: true
       },
       repos_url: {
         type: Sequelize.INTERGER,
         primaryKey: true,
-        allowNull: false
+        allowNull: true
       },
       html_url: {
         type: Sequelize.INTERGER,
         primaryKey: true,
-        allowNull: false
+        allowNull: true
       },
-      avatar_url: {
+      blogUrl: {
         type: Sequelize.INTERGER,
         primaryKey: true,
-        allowNull: false
+        allowNull: true
       },
-      company: {
+      about: {
         type: Sequelize.INTERGER,
         primaryKey: true,
-        allowNull: false
-      },
-      blog: {
-        type: Sequelize.INTERGER,
-        primaryKey: true,
-        allowNull: false
-      },
-      public_repos: {
-        type: Sequelize.INTERGER,
-        primaryKey: true,
-        allowNull: false
-      },
-      public_gists: {
-        type: Sequelize.INTERGER,
-        primaryKey: true,
-        allowNull: false
-      },
-      bio: {
-        type: Sequelize.INTERGER,
-        primaryKey: true,
-        allowNull: false
-      },
-      blog: {
-        type: Sequelize.INTERGER,
-        primaryKey: true,
-        allowNull: false
-      },
-      git_create_at: {
-        type: Sequelize.DATE,
-        allowNull: false
-      },
-      git_updated_at: {
-        type: Sequelize.DATE,
-        allowNull: false
+        allowNull: true
       },
       create_at: {
-        type: Sequelize.DATE,
+        type: Sequelize.INTERGER,
         allowNull: false
       },
       updated_at: {
-        type: Sequelize.DATE,
+        type: Sequelize.INTERGER,
         allowNull: false
       }
     });
@@ -90,6 +63,12 @@ module.exports = {
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable("users", {
       id: {
+        type: Sequelize.INTERGER,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: false
+      },
+      git_id: {
         type: Sequelize.INTERGER,
         primaryKey: true,
         autoIncrement: true,
@@ -119,47 +98,22 @@ module.exports = {
         primaryKey: true,
         allowNull: false
       },
-      github_avatar_url: {
+      blogUrl: {
         type: Sequelize.INTERGER,
         primaryKey: true,
         allowNull: false
       },
-      company: {
-        type: Sequelize.INTERGER,
-        primaryKey: true,
-        allowNull: false
-      },
-      blog: {
-        type: Sequelize.INTERGER,
-        primaryKey: true,
-        allowNull: false
-      },
-      public_repos: {
-        type: Sequelize.INTERGER,
-        primaryKey: true,
-        allowNull: false
-      },
-      public_gists: {
-        type: Sequelize.INTERGER,
-        primaryKey: true,
-        allowNull: false
-      },
-      bio: {
-        type: Sequelize.INTERGER,
-        primaryKey: true,
-        allowNull: false
-      },
-      blog: {
+      about: {
         type: Sequelize.INTERGER,
         primaryKey: true,
         allowNull: false
       },
       create_at: {
-        type: Sequelize.DATE,
+        type: Sequelize.INTERGER,
         allowNull: false
       },
       updated_at: {
-        type: Sequelize.DATE,
+        type: Sequelize.INTERGER,
         allowNull: false
       }
     });
