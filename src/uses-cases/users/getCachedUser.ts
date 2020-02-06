@@ -1,7 +1,7 @@
-const makeGetUser = (UserDB:any) => {
+const makeGetUser = (getCachedUser:any) => {
     return async (username:any) => {
-        const redis_user = await UserDB.get(username)
-        return redis_user
+        const user = await getCachedUser(username)
+        return user
     }
 }
 

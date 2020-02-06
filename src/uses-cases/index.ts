@@ -1,5 +1,13 @@
-import { postgree, redis } from "../db/index";
-const { UserDB, ProjectDB } = postgree;
+import {
+  findUsername,
+  getCachedUser,
+  deleteUser,
+  insertAbout,
+  getUsers,
+  insertBlogUrlById,
+  insertCachedUser,
+  createUser
+} from "../data-access/index";
 
 // Users
 import makeCacheUser from "./users/cacheUser";
@@ -12,35 +20,35 @@ import makeUpdateAbout from "./users/updateAbout";
 import makeUpdateBlogUrl from "./users/updateBlogUrl";
 
 // Projects
-import  makeCreateProject  from "./project/createProject";
-import  makeDeleteProject  from "./project/deleteProject";
-import  makeGetProject  from "./project/getProject";
-import  makeGetProjects  from "./project/getProjects";
-import  makeUpdateProject  from "./project/updateProject";
+import makeCreateProject from "./project/createProject";
+import makeDeleteProject from "./project/deleteProject";
+import makeGetProject from "./project/getProject";
+import makeGetProjects from "./project/getProjects";
+import makeUpdateProject from "./project/updateProject";
 
 // User
-const cacheUser = makeCacheUser({ UserDB });
-const create_user = makeCreateUser({ UserDB });
-const delete_user = makeDeleteUser({ UserDB });
-const get_cachedUser = makeGetCachedUser({ UserDB });
-const get_user = makeGetUser({ UserDB });
-const get_users = makeGetUsers({ UserDB });
-const update_about = makeUpdateAbout({ UserDB });
-const update_blogUrl = makeUpdateBlogUrl({ UserDB });
+const cache_user = makeCacheUser({ findUsername, insertCachedUser });
+const create_user = makeCreateUser({ createUser });
+const delete_user = makeDeleteUser({ deleteUser });
+const get_cachedUser = makeGetCachedUser({ getCachedUser });
+const get_username = makeGetUser({ findUsername });
+const get_users = makeGetUsers({ getUsers });
+const update_about = makeUpdateAbout({ insertAbout });
+const update_blogUrl = makeUpdateBlogUrl({ insertBlogUrlById });
 
 // Projects
-const create_project = makeCreateProject({ ProjectDB });
-const update_project = makeUpdateProject({ ProjectDB });
-const delete_project = makeDeleteProject({ ProjectDB });
-const get_project = makeGetProject({ ProjectDB });
-const get_projects = makeGetProjects({ ProjectDB });
+const create_project = makeCreateProject({  });
+const update_project = makeUpdateProject({  });
+const delete_project = makeDeleteProject({  });
+const get_project = makeGetProject({  });
+const get_projects = makeGetProjects({  });
 
 const index = Object.freeze({
-  cacheUser,
+  cache_user,
   create_user,
   delete_user,
   get_cachedUser,
-  get_user,
+  get_username,
   get_users,
   update_about,
   update_blogUrl,
@@ -55,11 +63,11 @@ const index = Object.freeze({
 export default index;
 
 export {
-  cacheUser,
+  cache_user,
   create_user,
   delete_user,
   get_cachedUser,
-  get_user,
+  get_username,
   get_users,
   update_about,
   update_blogUrl,

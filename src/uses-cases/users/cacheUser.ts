@@ -1,11 +1,11 @@
 import {buildUser} from '../../entities/index'
 
-const makeCacheUser = (UserDB:any) => {
+const makeCacheUser = ({findUserByUsername, insertCachedUser}:any) => {
     return async (username:any) => {
-        const user = UserDB.getUser(username)
+        const user = findUserByUsername(username)
         const User = buildUser(user)
 
-        const redis_user = await UserDB.create({
+        const redis_user = await insertCachedUser({
             github_id: User.getId(),
             username: User.getUsername(),
             email: User.getEmail(),

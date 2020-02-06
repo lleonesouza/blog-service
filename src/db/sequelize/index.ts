@@ -1,6 +1,5 @@
 import Sequelize from "sequelize";
 import makeModelsInit, { Users, Projects } from "./models/index";
-import makeQueries from "./makeQueries";
 
 const sequelize = (sequelize_config: any) => {
   var sequelize_connection = new Sequelize(
@@ -18,8 +17,5 @@ const sequelize = (sequelize_config: any) => {
   makeModelsInit(sequelize_connection);
 };
 
-const UserDB = makeQueries(Users);
-const ProjectDB = makeQueries(Projects);
-
 export default sequelize;
-export { UserDB, ProjectDB };
+export { Users, Projects };

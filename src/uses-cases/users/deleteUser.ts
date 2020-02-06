@@ -1,6 +1,6 @@
-const makeDeleteUser = ({UserDB}:any) => {
-    return (user_id:any) => {
-        const deleted = UserDB.delete({where: user_id})
+const makeDeleteUser = ({deleteUser}:any) => {
+    return async (user_id:any) => {
+        const deleted = await deleteUser(user_id)
         return deleted
     }
 }

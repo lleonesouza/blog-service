@@ -2,7 +2,7 @@ import express from "express";
 import passport from "passport";
 import makeRoutes from "./routes/index";
 import initPassport from "./passport/index";
-import sequelize from './db/index'
+import sequelize from './db/sequelize/index'
 import config from './config'
 
 const makeServer = () => {

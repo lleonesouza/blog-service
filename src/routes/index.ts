@@ -13,7 +13,6 @@ import {
   updateProject,
 } from "../controllers/index";
 import passport from "passport";
-import { get_user } from "../uses-cases/index";
 
 const oauth_options = { scope: ["user:email"], session: false };
 const github2Oauth = passport.authenticate("githubtoken", oauth_options);

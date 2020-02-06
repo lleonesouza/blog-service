@@ -13,9 +13,7 @@ const initRedis = () => {
   const repos = makeHRedis(client, "Repos", repos_hash);
   const medium = makeHRedis(client, "Medium", medium_hash);
 
-  const index = Object.freeze({ ...user, ...repos, ...medium });
-
-  return index;
+  return Object.freeze({ user, repos, medium });
 };
 
 export default initRedis;

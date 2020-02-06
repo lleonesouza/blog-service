@@ -1,4 +1,4 @@
-const makeOauthPassport = ({get_user, create_user}:any) => {
+const makeOauthPassport = ({get_username, create_user}:any) => {
     return async (
       req: any,
       accessToken: any,
@@ -7,7 +7,7 @@ const makeOauthPassport = ({get_user, create_user}:any) => {
       done: any
     ) => {
       try {
-        const exists = await get_user({ login: profile._json.login });
+        const exists = await get_username(profile._json.login);
         if (exists) {
           done(null, exists);
         } else {
